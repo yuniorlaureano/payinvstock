@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Contract", "Pay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Util", "Payinvstock.Util\Payinvstock.Util.csproj", "{6186F458-23A2-4834-B80C-DF70B0D68D2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Enums", "Payinvstock.Enums\Payinvstock.Enums.csproj", "{D7F63430-B0FB-45CD-8F8E-DF4A871D059B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6186F458-23A2-4834-B80C-DF70B0D68D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6186F458-23A2-4834-B80C-DF70B0D68D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6186F458-23A2-4834-B80C-DF70B0D68D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{37D0A350-FE20-479E-AAA9-905CFC410527} = {0BA96BAD-53D8-49CB-BA3B-32E6E720B266}
 		{6AA4D7D6-DEA3-4366-AEAA-0E4576731FE8} = {5D6B05B0-0ED4-47B1-B9BB-213675100CBE}
 		{6186F458-23A2-4834-B80C-DF70B0D68D2E} = {91F1C33A-088F-498A-94D0-6621AE4F7249}
+		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B} = {5D6B05B0-0ED4-47B1-B9BB-213675100CBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EA773AC-50FF-46F9-9A20-F8F66649CB26}
