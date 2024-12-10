@@ -38,19 +38,11 @@ public class Product
     /// </summary>
     public Guid CategoryId { get; set; }
 
-
-    /// <summary>
-    /// The location of the product
-    /// This is where the product is located
-    /// </summary>
-    public Guid LocationId { get; set; } // Maybe this should be moved to a another table because I will be handling store, like store1, store2
-
     /// <summary>
     /// Indicate the type of the product
     /// e.g. Raw material, Finished product
     /// </summary>
     public ProductType Type { get; set; }
-
 
 
     //Who create or update and when it is done

@@ -1,4 +1,4 @@
-﻿namespace Payinvstock.Entity.Invoice;
+﻿namespace Payinvstock.Entity.Invoicing;
 
 public class AccountsReceivableDetail
 {

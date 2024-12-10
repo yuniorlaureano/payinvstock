@@ -15,7 +15,7 @@ public class Stock
     /// </summary>
     public DateTime Date { get; set; }
     public StockStatus Status { get; set; }
-    public string Note { get; set; }
+    public string? Note { get; set; }
     public Guid? ProviderId { get; set; }
     public Guid StoreId { get; set; }
 

@@ -13,9 +13,6 @@ public class StockReason
     /// </summary>
     public TransactionType InputOrOutput { get; set; }
 
-
-
-    //Who create or update and when it is done
     public DateTime CreatedAt { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime UpdatedAt { get; set; }

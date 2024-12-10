@@ -1,4 +1,4 @@
-﻿namespace Payinvstock.Enums.Invoice;
+﻿namespace Payinvstock.Enums.Invoicing;
 
 public class InvoiceDetailProductAdjustment
 {

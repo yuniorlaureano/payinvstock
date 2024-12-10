@@ -1,4 +1,4 @@
-﻿namespace Payinvstock.Entity.Invoice;
+﻿namespace Payinvstock.Entity.Invoicing;
 
 public class ClientCredit
 {
@@ -8,7 +8,6 @@ public class ClientCredit
     public Guid ClientId { get; set; }
 
 
-    //Who create or update and when it is done
     public DateTime CreatedAt { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime UpdatedAt { get; set; }

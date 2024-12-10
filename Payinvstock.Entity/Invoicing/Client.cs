@@ -1,11 +1,11 @@
 ﻿using Payinvstock.Enums;
 
-namespace Payinvstock.Entity.Invoice;
+namespace Payinvstock.Entity.Invoicing;
 
 public class Client
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public string FirstName { get; set; }
     public string? LastName { get; set; }
     public string Identification { get; set; }
     public IdentificationType IdentificationType { get; set; }
@@ -22,8 +22,7 @@ public class Client
 
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
-
-    //Who create or update and when it is done
+     
     public DateTime CreatedAt { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime UpdatedAt { get; set; }

@@ -1,6 +1,6 @@
-﻿using Payinvstock.Enums.Invoice;
+﻿using Payinvstock.Enums.Invoicing;
 
-namespace Payinvstock.Entity.Invoice;
+namespace Payinvstock.Entity.Invoicing;
 
 public class Invoice
 {
@@ -15,4 +15,11 @@ public class Invoice
     public DateTime Date { get; set; }
     public string? Note { get; set; }
     public Guid ClientId { get; set; }
+
+
+    //Who create or update and when it is done
+    public DateTime CreatedAt { get; set; }
+    public Guid CreatedBy { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public Guid? UpdatedBy { get; set; }
 }

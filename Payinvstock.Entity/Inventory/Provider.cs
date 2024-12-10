@@ -5,7 +5,7 @@ namespace Payinvstock.Entity.Inventory;
 public class Provider
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public string FirstName { get; set; }
     public string? LastName { get; set; }
     public string Identification { get; set; }
     public IdentificationType IdentificationType { get; set; }
