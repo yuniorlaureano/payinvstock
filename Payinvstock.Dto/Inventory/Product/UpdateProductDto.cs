@@ -1,11 +1,8 @@
 ﻿using Payinvstock.Enums.Inventory;
 
-namespace Payinvstock.Entity.Inventory;
+namespace Payinvstock.Dto.Inventory.Product;
 
-/// <summary>
-/// This class is used to store the products that are in the inventory
-/// </summary>
-public class Product
+public class UpdateProductDto
 {
     public Guid Id { get; set; }
     public string Code { get; set; }
@@ -44,11 +41,4 @@ public class Product
     /// e.g. Raw material, Finished product
     /// </summary>
     public ProductType Type { get; set; }
-
-
-    //Who create or update and when it is done
-    public DateTime CreatedAt { get; set; }
-    public Guid CreatedBy { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public Guid? UpdatedBy { get; set; }
 }

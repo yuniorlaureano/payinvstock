@@ -7,9 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
     <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
     <ProjectReference Include="..\Payinvstock.Enums\Payinvstock.Enums.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Invoicing\" />
+    <Folder Include="General\" />
+    <Folder Include="Settings\" />
+    <Folder Include="Report\" />
+    <Folder Include="Security\" />
   </ItemGroup>
 
 </Project>

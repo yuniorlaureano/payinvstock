@@ -1,6 +1,6 @@
 ﻿namespace Payinvstock.Enums.Inventory;
 
-public enum StockStatus
+public enum StockStatus : byte
 {
     Draft = 0,
     Saved = 1,

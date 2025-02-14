@@ -7,12 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
     <PackageReference Include="Npgsql" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Inventory\Stock\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Payinvstock.Contract\Payinvstock.Contract.csproj" />
+    <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
+    <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
+    <ProjectReference Include="..\Payinvstock.Enums\Payinvstock.Enums.csproj" />
   </ItemGroup>
 
 </Project>

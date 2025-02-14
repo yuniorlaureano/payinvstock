@@ -119,10 +119,12 @@ namespace Payinvstock.Migrator.Migrations
 
             Create.Table(nameof(Product)).InSchema(Schemas.Inventory)
                .WithColumn(nameof(Product.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(Product.Code)).AsAnsiString(100).NotNullable()
                .WithColumn(nameof(Product.Name)).AsAnsiString(200).NotNullable()
                .WithColumn(nameof(Product.Description)).AsAnsiString(500)
                .WithColumn(nameof(Product.Photo)).AsAnsiString()
                .WithColumn(nameof(Product.Price)).AsDecimal(18, 2).NotNullable()
+               .WithColumn(nameof(Product.IsDeleted)).AsBoolean().NotNullable().WithDefaultValue(false)
                .WithColumn(nameof(Product.ByUnitOrWeight)).AsInt16().NotNullable()
                .WithColumn(nameof(Product.UnitValue)).AsDouble().NotNullable()
                .WithColumn(nameof(Product.Type)).AsInt16().NotNullable()

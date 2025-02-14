@@ -1,7 +1,5 @@
-﻿using Payinvstock.Contract.Inventory.Stock;
+﻿namespace Payinvstock.Bll.Inventory.Stock;
 
-namespace Payinvstock.Bll.Inventory.Stock;
-
-public class GetStockService : IGetStockService
+public class GetStockService
 {
 }

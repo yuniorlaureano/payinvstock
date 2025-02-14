@@ -1,4 +1,5 @@
 ﻿using FluentMigrator.Runner;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Payinvstock.Migrator;
@@ -15,7 +16,13 @@ public class Program
 
         var option = Console.ReadLine();
 
-        var service = CreateService();
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddUserSecrets<Program>()
+            .Build();
+
+
+        var service = CreateService(configuration);
         using var scope = service.CreateScope();
 
         switch (option)
@@ -42,13 +49,15 @@ public class Program
         }
     }
 
-    private static IServiceProvider CreateService()
+    private static IServiceProvider CreateService(IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
         return new ServiceCollection()
+            .AddSingleton(configuration)
             .AddFluentMigratorCore()
             .ConfigureRunner(rb => rb
                 .AddPostgres()
-                .WithGlobalConnectionString("Host=192.168.100.25;Port=5432;Database=gpa;Username=postgres;Password=postgres")
+                .WithGlobalConnectionString(connectionString)
                 .ScanIn(typeof(Program).Assembly).For.Migrations())
             .AddLogging(lb => lb.AddFluentMigratorConsole())
             .BuildServiceProvider(false);
@@ -64,5 +73,6 @@ public class Program
     {
         var runner = service.GetRequiredService<IMigrationRunner>();
         runner.MigrateDown(targetVersion);
+
     }
 }

@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Enums", "Payinv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Migrator", "Payinvstock.Migrator\Payinvstock.Migrator.csproj", "{A8860EAC-819C-42B2-8550-B40294B0CDCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payinvstock.Mapper", "Payinvstock.Mapper\Payinvstock.Mapper.csproj", "{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{A8860EAC-819C-42B2-8550-B40294B0CDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8860EAC-819C-42B2-8550-B40294B0CDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8860EAC-819C-42B2-8550-B40294B0CDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{6186F458-23A2-4834-B80C-DF70B0D68D2E} = {91F1C33A-088F-498A-94D0-6621AE4F7249}
 		{D7F63430-B0FB-45CD-8F8E-DF4A871D059B} = {5D6B05B0-0ED4-47B1-B9BB-213675100CBE}
 		{A8860EAC-819C-42B2-8550-B40294B0CDCD} = {A5547E5D-0B69-4416-8790-2BAE56199995}
+		{E2761AFE-7C0A-40BC-9553-6A6EF5255AC2} = {5D6B05B0-0ED4-47B1-B9BB-213675100CBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EA773AC-50FF-46F9-9A20-F8F66649CB26}

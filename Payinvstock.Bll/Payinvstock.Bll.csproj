@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Payinvstock.Contract\Payinvstock.Contract.csproj" />
+    <ProjectReference Include="..\Payinvstock.Dal\Payinvstock.Dal.csproj" />
+    <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
+    <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
+    <ProjectReference Include="..\Payinvstock.Enums\Payinvstock.Enums.csproj" />
   </ItemGroup>
 
 </Project>

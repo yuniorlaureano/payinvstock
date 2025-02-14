@@ -5,7 +5,7 @@
 /// This will allow the system to know how to handle the quantity
 /// Like if the product will be sold by unit or by weight
 /// </summary>
-public enum QuantityType
+public enum QuantityType : byte
 {
     ByUnit,
     ByWeight,
