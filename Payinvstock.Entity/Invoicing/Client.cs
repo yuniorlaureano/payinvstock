@@ -22,6 +22,7 @@ public class Client
 
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
+    public bool IsDeleted { get; set; }
      
     public DateTime CreatedAt { get; set; }
     public Guid CreatedBy { get; set; }

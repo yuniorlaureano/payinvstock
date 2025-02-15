@@ -7,6 +7,7 @@ public class StockCycle
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
     public bool IsClose { get; set; }
+    public bool IsDeleted { get; set; }
 
 
     //Who create or update and when it is done

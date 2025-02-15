@@ -4,4 +4,5 @@ public class PurchaseDetail
 {
     public Guid Id { get; set; }
     public Guid PurchaseId { get; set; }
+    public bool IsDeleted { get; set; }
 }

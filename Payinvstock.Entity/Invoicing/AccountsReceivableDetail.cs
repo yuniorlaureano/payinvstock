@@ -6,4 +6,5 @@ public class AccountsReceivableDetail
     public Guid AccountsReceivableId { get; set; }
     public decimal PendingPayment { get; set; }
     public decimal Payment { get; set; }
+    public bool IsDeleted { get; set; }
 }

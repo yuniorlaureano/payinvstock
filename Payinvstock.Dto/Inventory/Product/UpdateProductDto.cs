@@ -10,7 +10,6 @@ public class UpdateProductDto
     public string Description { get; set; }
     public string Photo { get; set; }
     public decimal Price { get; set; }
-    public bool IsDeleted { get; set; }
 
     /// <summary>
     /// Indicate the type of the quantity

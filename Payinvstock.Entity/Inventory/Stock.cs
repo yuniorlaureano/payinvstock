@@ -18,6 +18,7 @@ public class Stock
     public string? Note { get; set; }
     public Guid? ProviderId { get; set; }
     public Guid StoreId { get; set; }
+    public bool IsDeleted { get; set; }
 
     /// <summary>
     /// e.g. Sale, Purchase, Return, Damage, Expired, Manufacture, Raw material, Cancelled

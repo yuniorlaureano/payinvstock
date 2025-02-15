@@ -22,6 +22,7 @@ public class Provider
 
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
+    public bool IsDeleted { get; set; }
 
     //Who create or update and when it is done
     public DateTime CreatedAt { get; set; }

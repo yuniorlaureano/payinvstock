@@ -15,6 +15,7 @@ public class Adjustment
     public Guid Id { get; set; }
     public string Concept { get; set; }
     public decimal Value { get; set; }
+    public bool IsDeleted { get; set; }
 
 
     public bool IsDiscount { get; set; }

@@ -7,6 +7,7 @@ public class StockReason
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
+    public bool IsDeleted { get; set; }
     
     /// <summary>
     /// If the transaction is input or output

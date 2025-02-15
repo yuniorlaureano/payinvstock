@@ -5,6 +5,7 @@ public class ProductAdjustment
     public Guid Id { get; set; }
     public Guid ProductId { get; set; }
     public Guid AdjustmentId { get; set; }
+    public bool IsDeleted { get; set; }
 
 
     //Who create or update and when it is done

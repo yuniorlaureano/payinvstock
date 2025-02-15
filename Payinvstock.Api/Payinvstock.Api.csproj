@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
     <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
     <ProjectReference Include="..\Payinvstock.Enums\Payinvstock.Enums.csproj" />
+    <ProjectReference Include="..\Payinvstock.Mapper\Payinvstock.Mapper.csproj" />
     <ProjectReference Include="..\Payinvstock.Migrator\Payinvstock.Migrator.csproj" />
     <ProjectReference Include="..\Payinvstock.Network\Payinvstock.Network.csproj" />
     <ProjectReference Include="..\Payinvstock.Util\Payinvstock.Util.csproj" />

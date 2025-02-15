@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Invoicing\" />
-    <Folder Include="General\" />
     <Folder Include="Settings\" />
     <Folder Include="Report\" />
     <Folder Include="Security\" />
