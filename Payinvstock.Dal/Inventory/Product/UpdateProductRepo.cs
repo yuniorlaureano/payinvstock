@@ -10,21 +10,16 @@ public class UpdateProductRepo : IUpdateProductRepo
 
     public UpdateProductRepo(IDapperContext dapperContext)
     {
-        _dapperContext = dapperContext ?? throw new ArgumentNullException($"Class '{nameof(UpdateProductRepo)}', Method '{nameof(UpdateProductRepo)}', service '{nameof(IDapperContext)}' required");
+        _dapperContext = dapperContext; ;
     }
 
-    /// <summary>
-    /// Update a product in the database
-    /// </summary>
-    /// <param name="product"></param>
-    /// <returns></returns>
-    public async Task UpdateProductAsync(Entity.Inventory.Product product)
+    public async Task UpdateProductAsync(Entity.Inventory.Product model)
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
             @"UPDATE ""Inventory"".""Product""
                 SET 
-                    ""Code"" = @Code, 
+                    ""Code"" = @Code,
                     ""Name"" = @Name,
                     ""Description"" = @Description,
                     ""Photo"" = @Photo,
@@ -34,12 +29,10 @@ public class UpdateProductRepo : IUpdateProductRepo
                     ""UnitId"" = @UnitId,
                     ""CategoryId"" = @CategoryId,
                     ""Type"" = @Type,
-                    ""CreatedAt"" = @CreatedAt,
-                    ""CreatedBy"" = @CreatedBy,
                     ""UpdatedAt"" = @UpdatedAt,
                     ""UpdatedBy"" = @UpdatedBy 
                WHERE ""Id"" = @Id",
-            product
+            model
         );
     }
 }

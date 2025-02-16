@@ -4,5 +4,5 @@ namespace Payinvstock.Contract.BLL.General.Unit;
 
 public interface IUpdateUnitService
 {
-    Task UpdateUnitAsync(UpdateUnitDto model);
+    Task<GetUnitDto?> UpdateUnitAsync(Guid id, UpdateUnitDto model);
 }

@@ -10,7 +10,7 @@ public class GetUnitRepo : IGetUnitRepo
 
     public GetUnitRepo(IDapperContext dapperContext)
     {
-        _dapperContext = dapperContext ?? throw new ArgumentNullException($"Class '{nameof(GetUnitRepo)}', Method '{nameof(GetUnitRepo)}', service '{nameof(IDapperContext)}' required");
+        _dapperContext = dapperContext;
     }
 
     public async Task<IEnumerable<Entity.General.Unit>> GetUnitsAsync()
@@ -24,7 +24,7 @@ public class GetUnitRepo : IGetUnitRepo
     public async Task<Entity.General.Unit?> GetUnitAsync(Guid id)
     {
         using var connection = _dapperContext.CreateConnection();
-        var query = @"SELECT * FROM ""General"".""Unit"" WHERE ""Id"" = @Id";
+        var query = @"SELECT * FROM ""General"".""Unit"" WHERE ""Id"" = @Id AND NOT ""IsDeleted""";
         var result = await connection.QuerySingleOrDefaultAsync<Entity.General.Unit>(query, new { Id = id });
         return result;
     }

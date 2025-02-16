@@ -18,13 +18,13 @@ public class GetProductService : IGetProductService
 
     public async Task<IEnumerable<GetProductDto>> GetProductsAsync()
     {
-        var products = await _getProductRepo.GetProductsAsync();
-        return _mapper.Map<IEnumerable<GetProductDto>>(products);
+        var result = await _getProductRepo.GetProductsAsync();
+        return _mapper.Map<IEnumerable<GetProductDto>>(result);
     }
 
     public async Task<GetProductDto?> GetProductAsync(Guid id)
     {
-        var product = await _getProductRepo.GetProductAsync(id);
-        return _mapper.Map<GetProductDto?>(product);
+        var result = await _getProductRepo.GetProductAsync(id);
+        return _mapper.Map<GetProductDto?>(result);
     }
 }

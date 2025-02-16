@@ -16,7 +16,6 @@ public class UnitsController : ControllerBase
     private readonly IUpdateUnitService _updateUnitService;
     private readonly IDeleteUnitService _deleteUnitService;
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -74,12 +73,13 @@ public class UnitsController : ControllerBase
     /// <summary>
     /// Update a unit of measurement
     /// </summary>
+    /// <param name="id"></param>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPut()]
-    public async Task<IActionResult> Put(UpdateUnitDto model)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, UpdateUnitDto model)
     {
-        await _updateUnitService.UpdateUnitAsync(model);
+        await _updateUnitService.UpdateUnitAsync(id, model);
         return NoContent();
     }
 
@@ -88,7 +88,7 @@ public class UnitsController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpDelete()]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await _deleteUnitService.DeleteUnitAsync(id);

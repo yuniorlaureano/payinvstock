@@ -6,7 +6,6 @@ namespace Payinvstock.Api.Controllers.Inventory;
 
 /// <summary>
 /// Products endpoints
-/// Allow to manage products
 /// </summary>
 [ApiController()]
 [Route("api/inventory/products")]
@@ -37,7 +36,7 @@ public class ProductsController : ControllerBase
     }
 
     /// <summary>
-    /// Get all products
+    /// Get products
     /// </summary>
     /// <returns></returns>
     [HttpGet()]
@@ -74,12 +73,13 @@ public class ProductsController : ControllerBase
     /// <summary>
     /// Update a product
     /// </summary>
+    /// <param name="id"></param>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPut()]
-    public async Task<IActionResult> Put(UpdateProductDto model)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, UpdateProductDto model)
     {
-        await _updateProductService.UpdateProductAsync(model);
+        await _updateProductService.UpdateProductAsync(id, model);
         return NoContent();
     }
 
@@ -88,7 +88,7 @@ public class ProductsController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpDelete()]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await _deleteProductService.DeleteProductAsync(id);

@@ -1,16 +1,21 @@
 ﻿using Dapper;
 using Payinvstock.Contract.Dal;
 using Payinvstock.Contract.Dal.General.Unit;
+using Payinvstock.Contract.Util.Http;
 
 namespace Payinvstock.Dal.General.Unit;
 
 public class DeleteUnitRepo : IDeleteUnitRepo
 {
     private readonly IDapperContext _dapperContext;
+    private readonly IUserHttpContextAccessor _userContextAccessor;
 
-    public DeleteUnitRepo(IDapperContext dapperContext)
+    public DeleteUnitRepo(
+        IDapperContext dapperContext,
+        IUserHttpContextAccessor userContextAccessor)
     {
-        _dapperContext = dapperContext ?? throw new ArgumentNullException($"Class '{nameof(DeleteUnitRepo)}', Method '{nameof(DeleteUnitRepo)}', service '{nameof(IDapperContext)}' required");
+        _dapperContext = dapperContext;
+        _userContextAccessor = userContextAccessor;
     }
 
     public async Task DeleteUnitAsync(Guid id)
@@ -19,11 +24,16 @@ public class DeleteUnitRepo : IDeleteUnitRepo
         await connection.ExecuteAsync(
             @"UPDATE ""General"".""Unit""
                 SET 
-                    ""IsDeleted"" = 1,  
+                    ""IsDeleted"" = true,  
                     ""UpdatedAt"" = @UpdatedAt,
                     ""UpdatedBy"" = @UpdatedBy
                WHERE ""Id"" = @Id",
-            new { Id = id }
+            new 
+            {
+                Id = id,
+                UpdatedAt = DateTime.UtcNow,
+                UpdatedBy = _userContextAccessor.GetCurrentUserId()
+            }
         );
     }
 }

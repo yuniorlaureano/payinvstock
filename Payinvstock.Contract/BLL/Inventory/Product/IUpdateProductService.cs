@@ -4,5 +4,5 @@ namespace Payinvstock.Contract.BLL.Inventory.Product;
 
 public interface IUpdateProductService
 {
-    Task UpdateProductAsync(UpdateProductDto model);
+    Task<GetProductDto?> UpdateProductAsync(Guid id, UpdateProductDto model);
 }

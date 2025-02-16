@@ -1,16 +1,16 @@
 ﻿using Dapper;
 using Payinvstock.Contract.Dal;
-using Payinvstock.Contract.Dal.Inventory.Product;
+using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Util.Http;
 
-namespace Payinvstock.Dal.Inventory.Product;
+namespace Payinvstock.Dal.Inventory.Category;
 
-public class DeleteProductRepo : IDeleteProductRepo
+public class DeleteCategoryRepo : IDeleteCategoryRepo
 {
     private readonly IDapperContext _dapperContext;
     private readonly IUserHttpContextAccessor _userContextAccessor;
 
-    public DeleteProductRepo(
+    public DeleteCategoryRepo(
         IDapperContext dapperContext,
         IUserHttpContextAccessor userContextAccessor)
     {
@@ -18,11 +18,11 @@ public class DeleteProductRepo : IDeleteProductRepo
         _userContextAccessor = userContextAccessor;
     }
 
-    public async Task DeleteProductAsync(Guid id)
+    public async Task DeleteCategoryAsync(Guid id)
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @"UPDATE ""Inventory"".""Product""
+            @"UPDATE ""Inventory"".""Category""
                 SET 
                     ""IsDeleted"" = true,  
                     ""UpdatedAt"" = @UpdatedAt,

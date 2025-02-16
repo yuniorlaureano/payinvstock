@@ -1,14 +1,20 @@
 ﻿using Payinvstock.Bll.General.Unit;
+using Payinvstock.Bll.Inventory.Category;
 using Payinvstock.Bll.Inventory.Product;
 using Payinvstock.Contract.BLL.General.Unit;
+using Payinvstock.Contract.BLL.Inventory.Category;
 using Payinvstock.Contract.BLL.Inventory.Product;
 using Payinvstock.Contract.Dal;
 using Payinvstock.Contract.Dal.General.Unit;
+using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Dal.Inventory.Product;
+using Payinvstock.Contract.Util.Http;
 using Payinvstock.Dal;
 using Payinvstock.Dal.General.Unit;
+using Payinvstock.Dal.Inventory.Category;
 using Payinvstock.Dal.Inventory.Product;
 using Payinvstock.Mapper.Inventory;
+using Payinvstock.Util.Http;
 
 namespace Payinvstock.Api.Extensions;
 
@@ -30,7 +36,8 @@ public static class Dependencies
         AddServices(services, configuration);
         AddConfigurations(services, configuration);
         AddMappers(services);
-
+        AddHttpContextAccessors(services);
+        
         return services;
     }
 
@@ -41,8 +48,9 @@ public static class Dependencies
     /// <param name="configuration"></param>
     public static void AddRepos(IServiceCollection services, IConfiguration configuration)
     {
-        //Product
         services.AddSingleton<IDapperContext, DapperContext>();
+
+        //Product
         services.AddScoped<ICreateProductRepo, CreateProductRepo>();
         services.AddScoped<IGetProductRepo, GetProductRepo>();
         services.AddScoped<IUpdateProductRepo, UpdateProductRepo>();
@@ -53,6 +61,13 @@ public static class Dependencies
         services.AddScoped<IGetUnitRepo, GetUnitRepo>();
         services.AddScoped<IUpdateUnitRepo, UpdateUnitRepo>();
         services.AddScoped<IDeleteUnitRepo, DeleteUnitRepo>();
+
+        //Category 
+        services.AddScoped<ICreateCategoryRepo, CreateCategoryRepo>();
+        services.AddScoped<IGetCategoryRepo, GetCategoryRepo>();
+        services.AddScoped<IUpdateCategoryRepo, UpdateCategoryRepo>();
+        services.AddScoped<IDeleteCategoryRepo, DeleteCategoryRepo>();
+
 
     }
 
@@ -74,6 +89,12 @@ public static class Dependencies
         services.AddScoped<IGetUnitService, GetUnitService>();
         services.AddScoped<IUpdateUnitService, UpdateUnitService>();
         services.AddScoped<IDeleteUnitService, DeleteUnitService>();
+
+        //Category
+        services.AddScoped<ICreateCategoryService, CreateCategoryService>();
+        services.AddScoped<IGetCategoryService, GetCategoryService>();
+        services.AddScoped<IUpdateCategoryService, UpdateCategoryService>();
+        services.AddScoped<IDeleteCategoryService, DeleteCategoryService>();
 
     }
 
@@ -100,6 +121,19 @@ public static class Dependencies
 
             //Inventory
             mapper.AddProfile(new ProductProfileMapping());
+            mapper.AddProfile(new CategoryProfileMapping());
         });
+    }
+
+    /// <summary>
+    /// Add HttpContext accessors
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddHttpContextAccessors(IServiceCollection services)
+    {
+        services.AddHttpContextAccessor();
+
+        //Service for getting user information from HttpContext
+        services.AddScoped<IUserHttpContextAccessor, UserHttpContextAccessor>();
     }
 }

@@ -10,7 +10,7 @@ public class UpdateUnitRepo : IUpdateUnitRepo
 
     public UpdateUnitRepo(IDapperContext dapperContext)
     {
-        _dapperContext = dapperContext ?? throw new ArgumentNullException($"Class '{nameof(UpdateUnitRepo)}', Method '{nameof(UpdateUnitRepo)}', service '{nameof(IDapperContext)}' required");
+        _dapperContext = dapperContext;
     }
 
     public async Task UpdateUnitAsync(Entity.General.Unit model)
@@ -20,6 +20,7 @@ public class UpdateUnitRepo : IUpdateUnitRepo
             @"UPDATE ""General"".""Unit""
                 SET 
                     ""Name"" = @Name,
+                    ""Code"" = @Code,
                     ""Description"" = @Description,
                     ""UpdatedAt"" = @UpdatedAt,
                     ""UpdatedBy"" = @UpdatedBy 
