@@ -1,18 +1,22 @@
 ﻿using Payinvstock.Bll.General.Unit;
 using Payinvstock.Bll.Inventory.Category;
 using Payinvstock.Bll.Inventory.Product;
+using Payinvstock.Bll.Inventory.StockReason;
 using Payinvstock.Contract.BLL.General.Unit;
 using Payinvstock.Contract.BLL.Inventory.Category;
 using Payinvstock.Contract.BLL.Inventory.Product;
+using Payinvstock.Contract.BLL.Inventory.StockReason;
 using Payinvstock.Contract.Dal;
 using Payinvstock.Contract.Dal.General.Unit;
 using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Dal.Inventory.Product;
+using Payinvstock.Contract.Dal.Inventory.StockReason;
 using Payinvstock.Contract.Util.Http;
 using Payinvstock.Dal;
 using Payinvstock.Dal.General.Unit;
 using Payinvstock.Dal.Inventory.Category;
 using Payinvstock.Dal.Inventory.Product;
+using Payinvstock.Dal.Inventory.StockReason;
 using Payinvstock.Mapper.Inventory;
 using Payinvstock.Util.Http;
 
@@ -68,6 +72,11 @@ public static class Dependencies
         services.AddScoped<IUpdateCategoryRepo, UpdateCategoryRepo>();
         services.AddScoped<IDeleteCategoryRepo, DeleteCategoryRepo>();
 
+        //StockReason
+        services.AddScoped<ICreateStockReasonRepo, CreateStockReasonRepo>();
+        services.AddScoped<IGetStockReasonRepo, GetStockReasonRepo>();
+        services.AddScoped<IUpdateStockReasonRepo, UpdateStockReasonRepo>();
+        services.AddScoped<IDeleteStockReasonRepo, DeleteStockReasonRepo>();
 
     }
 
@@ -96,6 +105,12 @@ public static class Dependencies
         services.AddScoped<IUpdateCategoryService, UpdateCategoryService>();
         services.AddScoped<IDeleteCategoryService, DeleteCategoryService>();
 
+        //StockReason
+        services.AddScoped<ICreateStockReasonService, CreateStockReasonService>();
+        services.AddScoped<IGetStockReasonService, GetStockReasonService>();
+        services.AddScoped<IUpdateStockReasonService, UpdateStockReasonService>();
+        services.AddScoped<IDeleteStockReasonService, DeleteStockReasonService>();
+
     }
 
     /// <summary>
@@ -122,6 +137,7 @@ public static class Dependencies
             //Inventory
             mapper.AddProfile(new ProductProfileMapping());
             mapper.AddProfile(new CategoryProfileMapping());
+            mapper.AddProfile(new StockReasonProfileMapping());
         });
     }
 
