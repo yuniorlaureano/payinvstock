@@ -2,17 +2,20 @@
 using Payinvstock.Bll.General.Unit;
 using Payinvstock.Bll.Inventory.Category;
 using Payinvstock.Bll.Inventory.Product;
+using Payinvstock.Bll.Inventory.Provider;
 using Payinvstock.Bll.Inventory.StockReason;
 using Payinvstock.Contract.BLL.General.Store;
 using Payinvstock.Contract.BLL.General.Unit;
 using Payinvstock.Contract.BLL.Inventory.Category;
 using Payinvstock.Contract.BLL.Inventory.Product;
+using Payinvstock.Contract.BLL.Inventory.Provider;
 using Payinvstock.Contract.BLL.Inventory.StockReason;
 using Payinvstock.Contract.Dal;
 using Payinvstock.Contract.Dal.General.Store;
 using Payinvstock.Contract.Dal.General.Unit;
 using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Dal.Inventory.Product;
+using Payinvstock.Contract.Dal.Inventory.Provider;
 using Payinvstock.Contract.Dal.Inventory.StockReason;
 using Payinvstock.Contract.Util.Http;
 using Payinvstock.Dal;
@@ -20,6 +23,7 @@ using Payinvstock.Dal.General.Store;
 using Payinvstock.Dal.General.Unit;
 using Payinvstock.Dal.Inventory.Category;
 using Payinvstock.Dal.Inventory.Product;
+using Payinvstock.Dal.Inventory.Provider;
 using Payinvstock.Dal.Inventory.StockReason;
 using Payinvstock.Mapper.Inventory;
 using Payinvstock.Util.Http;
@@ -77,6 +81,12 @@ public static class Dependencies
         services.AddScoped<IUpdateStockReasonRepo, UpdateStockReasonRepo>();
         services.AddScoped<IDeleteStockReasonRepo, DeleteStockReasonRepo>();
 
+        //Provider
+        services.AddScoped<ICreateProviderRepo, CreateProviderRepo>();
+        services.AddScoped<IGetProviderRepo, GetProviderRepo>();
+        services.AddScoped<IUpdateProviderRepo, UpdateProviderRepo>();
+        services.AddScoped<IDeleteProviderRepo, DeleteProviderRepo>();
+
         #endregion
 
         #region General
@@ -121,6 +131,12 @@ public static class Dependencies
         services.AddScoped<IGetStockReasonService, GetStockReasonService>();
         services.AddScoped<IUpdateStockReasonService, UpdateStockReasonService>();
         services.AddScoped<IDeleteStockReasonService, DeleteStockReasonService>();
+
+        //Provider
+        services.AddScoped<ICreateProviderService, CreateProviderService>();
+        services.AddScoped<IGetProviderService, GetProviderService>();
+        services.AddScoped<IUpdateProviderService, UpdateProviderService>();
+        services.AddScoped<IDeleteProviderService, DeleteProviderService>();
 
         #endregion
 
@@ -167,6 +183,7 @@ public static class Dependencies
             mapper.AddProfile(new ProductProfileMapping());
             mapper.AddProfile(new CategoryProfileMapping());
             mapper.AddProfile(new StockReasonProfileMapping());
+            mapper.AddProfile(new ProviderProfileMapping());
 
         });
     }
