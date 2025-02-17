@@ -1,18 +1,22 @@
-﻿using Payinvstock.Bll.General.Unit;
+﻿using Payinvstock.Bll.General.Store;
+using Payinvstock.Bll.General.Unit;
 using Payinvstock.Bll.Inventory.Category;
 using Payinvstock.Bll.Inventory.Product;
 using Payinvstock.Bll.Inventory.StockReason;
+using Payinvstock.Contract.BLL.General.Store;
 using Payinvstock.Contract.BLL.General.Unit;
 using Payinvstock.Contract.BLL.Inventory.Category;
 using Payinvstock.Contract.BLL.Inventory.Product;
 using Payinvstock.Contract.BLL.Inventory.StockReason;
 using Payinvstock.Contract.Dal;
+using Payinvstock.Contract.Dal.General.Store;
 using Payinvstock.Contract.Dal.General.Unit;
 using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Dal.Inventory.Product;
 using Payinvstock.Contract.Dal.Inventory.StockReason;
 using Payinvstock.Contract.Util.Http;
 using Payinvstock.Dal;
+using Payinvstock.Dal.General.Store;
 using Payinvstock.Dal.General.Unit;
 using Payinvstock.Dal.Inventory.Category;
 using Payinvstock.Dal.Inventory.Product;
@@ -54,17 +58,12 @@ public static class Dependencies
     {
         services.AddSingleton<IDapperContext, DapperContext>();
 
+        #region Inventory
         //Product
         services.AddScoped<ICreateProductRepo, CreateProductRepo>();
         services.AddScoped<IGetProductRepo, GetProductRepo>();
         services.AddScoped<IUpdateProductRepo, UpdateProductRepo>();
         services.AddScoped<IDeleteProductRepo, DeleteProductRepo>();
-
-        //Unit
-        services.AddScoped<ICreateUnitRepo, CreateUnitRepo>();
-        services.AddScoped<IGetUnitRepo, GetUnitRepo>();
-        services.AddScoped<IUpdateUnitRepo, UpdateUnitRepo>();
-        services.AddScoped<IDeleteUnitRepo, DeleteUnitRepo>();
 
         //Category 
         services.AddScoped<ICreateCategoryRepo, CreateCategoryRepo>();
@@ -78,6 +77,23 @@ public static class Dependencies
         services.AddScoped<IUpdateStockReasonRepo, UpdateStockReasonRepo>();
         services.AddScoped<IDeleteStockReasonRepo, DeleteStockReasonRepo>();
 
+        #endregion
+
+        #region General
+        //Unit
+        services.AddScoped<ICreateUnitRepo, CreateUnitRepo>();
+        services.AddScoped<IGetUnitRepo, GetUnitRepo>();
+        services.AddScoped<IUpdateUnitRepo, UpdateUnitRepo>();
+        services.AddScoped<IDeleteUnitRepo, DeleteUnitRepo>();
+
+        //Stores
+        services.AddScoped<ICreateStoreRepo, CreateStoreRepo>();
+        services.AddScoped<IGetStoreRepo, GetStoreRepo>();
+        services.AddScoped<IUpdateStoreRepo, UpdateStoreRepo>();
+        services.AddScoped<IDeleteStoreRepo, DeleteStoreRepo>();
+
+        #endregion
+
     }
 
     /// <summary>
@@ -87,17 +103,12 @@ public static class Dependencies
     /// <param name="configuration"></param>
     public static void AddServices(IServiceCollection services, IConfiguration configuration)
     {
+        #region Inventory
         //Product
         services.AddScoped<ICreateProductService, CreateProductService>();
         services.AddScoped<IGetProductService, GetProductService>();
         services.AddScoped<IUpdateProductService, UpdateProductService>();
         services.AddScoped<IDeleteProductService, DeleteProductService>();
-
-        //Unit
-        services.AddScoped<ICreateUnitService, CreateUnitService>();
-        services.AddScoped<IGetUnitService, GetUnitService>();
-        services.AddScoped<IUpdateUnitService, UpdateUnitService>();
-        services.AddScoped<IDeleteUnitService, DeleteUnitService>();
 
         //Category
         services.AddScoped<ICreateCategoryService, CreateCategoryService>();
@@ -110,6 +121,23 @@ public static class Dependencies
         services.AddScoped<IGetStockReasonService, GetStockReasonService>();
         services.AddScoped<IUpdateStockReasonService, UpdateStockReasonService>();
         services.AddScoped<IDeleteStockReasonService, DeleteStockReasonService>();
+
+        #endregion
+
+        #region General
+        //Unit
+        services.AddScoped<ICreateUnitService, CreateUnitService>();
+        services.AddScoped<IGetUnitService, GetUnitService>();
+        services.AddScoped<IUpdateUnitService, UpdateUnitService>();
+        services.AddScoped<IDeleteUnitService, DeleteUnitService>();
+
+        //Stores
+        services.AddScoped<ICreateStoreService, CreateStoreService>();
+        services.AddScoped<IGetStoreService, GetStoreService>();
+        services.AddScoped<IUpdateStoreService, UpdateStoreService>();
+        services.AddScoped<IDeleteStoreService, DeleteStoreService>();
+
+        #endregion
 
     }
 
@@ -133,11 +161,13 @@ public static class Dependencies
         {
             //General
             mapper.AddProfile(new UnitProfileMapping());
+            mapper.AddProfile(new StoreProfileMapping());
 
             //Inventory
             mapper.AddProfile(new ProductProfileMapping());
             mapper.AddProfile(new CategoryProfileMapping());
             mapper.AddProfile(new StockReasonProfileMapping());
+
         });
     }
 
