@@ -29,9 +29,9 @@ public class GetStockService : IGetStockService
         return _mapper.Map<IEnumerable<GetStockDto>>(result);
     }
 
-    public async Task<GetStockDto?> GetStockAsync(Guid id)
+    public async Task<GetSingleStockDto?> GetStockAsync(Guid id)
     {
-        var stock = _mapper.Map<GetStockDto>(await _getStockRepo.GetStockAsync(id));
+        var stock = _mapper.Map<GetSingleStockDto>(await _getStockRepo.GetStockAsync(id));
         if (stock == null)
         {
             return null;
