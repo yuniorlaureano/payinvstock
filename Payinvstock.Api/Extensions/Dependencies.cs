@@ -1,6 +1,7 @@
 ﻿using Payinvstock.Bll.General.Store;
 using Payinvstock.Bll.General.Unit;
 using Payinvstock.Bll.Inventory.Category;
+using Payinvstock.Bll.Inventory.Existence;
 using Payinvstock.Bll.Inventory.Product;
 using Payinvstock.Bll.Inventory.Provider;
 using Payinvstock.Bll.Inventory.Stock;
@@ -8,6 +9,7 @@ using Payinvstock.Bll.Inventory.StockReason;
 using Payinvstock.Contract.BLL.General.Store;
 using Payinvstock.Contract.BLL.General.Unit;
 using Payinvstock.Contract.BLL.Inventory.Category;
+using Payinvstock.Contract.BLL.Inventory.Existence;
 using Payinvstock.Contract.BLL.Inventory.Product;
 using Payinvstock.Contract.BLL.Inventory.Provider;
 using Payinvstock.Contract.BLL.Inventory.Stock;
@@ -16,6 +18,7 @@ using Payinvstock.Contract.Dal;
 using Payinvstock.Contract.Dal.General.Store;
 using Payinvstock.Contract.Dal.General.Unit;
 using Payinvstock.Contract.Dal.Inventory.Category;
+using Payinvstock.Contract.Dal.Inventory.Existence;
 using Payinvstock.Contract.Dal.Inventory.Product;
 using Payinvstock.Contract.Dal.Inventory.Provider;
 using Payinvstock.Contract.Dal.Inventory.Stock;
@@ -26,6 +29,7 @@ using Payinvstock.Dal;
 using Payinvstock.Dal.General.Store;
 using Payinvstock.Dal.General.Unit;
 using Payinvstock.Dal.Inventory.Category;
+using Payinvstock.Dal.Inventory.Existence;
 using Payinvstock.Dal.Inventory.Product;
 using Payinvstock.Dal.Inventory.Provider;
 using Payinvstock.Dal.Inventory.Stock;
@@ -101,6 +105,9 @@ public static class Dependencies
         //StockDetail
         services.AddScoped<IGetStockDetailRepo, GetStockDetailRepo>();
 
+        //Existence
+        services.AddScoped<IGetExistenceRepo, GetExistenceRepo>();
+
         #endregion
 
         #region General
@@ -157,6 +164,9 @@ public static class Dependencies
         services.AddScoped<IGetStockService, GetStockService>();
         services.AddScoped<IUpdateStockService, UpdateStockService>();
         services.AddScoped<ICancelStockService, CancelStockService>();
+
+        //Existence
+        services.AddScoped<IGetExistenceService, GetExistenceService>();
 
         #endregion
 
