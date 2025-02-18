@@ -12,34 +12,38 @@ namespace Payinvstock.Api.Controllers.Inventory;
 public class StocksController : ControllerBase
 {
     private readonly ICreateStockService _createStockService;
+    private readonly IGetStockService _getStockService;
+
     public StocksController(
-        ICreateStockService createStockService)
+        ICreateStockService createStockService,
+        IGetStockService getStockService)
     {
         _createStockService = createStockService;
+        _getStockService = getStockService;
     }
 
-    ///// <summary>
-    ///// Get stock
-    ///// </summary>
-    ///// <returns></returns>
-    //[HttpGet()]
-    //public async Task<IActionResult> Get()
-    //{
-    //    var result = await _getStockReasonService.GetStockReasonsAsync();
-    //    return Ok(result);
-    //}
+    /// <summary>
+    /// Get stock
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet()]
+    public async Task<IActionResult> Get()
+    {
+        var result = await _getStockService.GetStocksAsync();
+        return Ok(result);
+    }
 
     /// <summary>
-    /// Get Stock by id
+    /// Get stock by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    //[HttpGet("{id}")]
-    //public async Task<IActionResult> Get(Guid id)
-    //{
-    //    var result = await _getStockReasonService.GetStockReasonAsync(id);
-    //    return Ok(result);
-    //}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var result = await _getStockService.GetStockAsync(id);
+        return Ok(result);
+    }
 
     /// <summary>
     /// Create a new Stock

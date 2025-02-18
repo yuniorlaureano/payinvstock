@@ -19,6 +19,7 @@ using Payinvstock.Contract.Dal.Inventory.Category;
 using Payinvstock.Contract.Dal.Inventory.Product;
 using Payinvstock.Contract.Dal.Inventory.Provider;
 using Payinvstock.Contract.Dal.Inventory.Stock;
+using Payinvstock.Contract.Dal.Inventory.StockDetail;
 using Payinvstock.Contract.Dal.Inventory.StockReason;
 using Payinvstock.Contract.Util.Http;
 using Payinvstock.Dal;
@@ -93,6 +94,11 @@ public static class Dependencies
 
         //Stock
         services.AddScoped<ICreateStockRepo, CreateStockRepo>();
+        services.AddScoped<IGetStockRepo, GetStockRepo>();
+
+
+        //StockDetail
+        services.AddScoped<IGetStockDetailRepo, GetStockDetailRepo>();
 
         #endregion
 
@@ -147,6 +153,7 @@ public static class Dependencies
 
         //Stock
         services.AddScoped<ICreateStockService, CreateStockService>();
+        services.AddScoped<IGetStockService, GetStockService>();
 
         #endregion
 
