@@ -1,4 +1,4 @@
-﻿namespace Payinvstock.Util.Constants;
+﻿namespace Payinvstock.Common.Constants;
 
 public class Schemas
 {

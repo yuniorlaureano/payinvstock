@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Payinvstock.Common\Payinvstock.Common.csproj" />
     <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
     <ProjectReference Include="..\Payinvstock.Util\Payinvstock.Util.csproj" />
   </ItemGroup>

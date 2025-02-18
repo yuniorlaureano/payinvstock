@@ -1,9 +1,9 @@
 ﻿using FluentMigrator;
+using Payinvstock.Common.Constants;
 using Payinvstock.Entity.General;
 using Payinvstock.Entity.Inventory;
 using Payinvstock.Entity.Invoicing;
 using Payinvstock.Enums.Invoicing;
-using Payinvstock.Util.Constants;
 
 namespace Payinvstock.Migrator.Migrations
 {

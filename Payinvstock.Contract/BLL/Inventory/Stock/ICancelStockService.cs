@@ -2,5 +2,5 @@
 
 public interface ICancelStockService
 {
-
+    Task CancelStockAsync(Guid id);
 }

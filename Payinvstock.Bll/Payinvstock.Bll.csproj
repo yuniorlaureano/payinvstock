@@ -11,11 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Payinvstock.Common\Payinvstock.Common.csproj" />
     <ProjectReference Include="..\Payinvstock.Contract\Payinvstock.Contract.csproj" />
     <ProjectReference Include="..\Payinvstock.Dal\Payinvstock.Dal.csproj" />
     <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
     <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
     <ProjectReference Include="..\Payinvstock.Enums\Payinvstock.Enums.csproj" />
+    <ProjectReference Include="..\Payinvstock.Util\Payinvstock.Util.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,15 +14,18 @@ public class StocksController : ControllerBase
     private readonly ICreateStockService _createStockService;
     private readonly IGetStockService _getStockService;
     private readonly IUpdateStockService _updateStockService;
+    private readonly ICancelStockService _cancelStockService;
 
     public StocksController(
         ICreateStockService createStockService,
         IGetStockService getStockService,
-        IUpdateStockService updateStockService)
+        IUpdateStockService updateStockService,
+        ICancelStockService cancelStockService)
     {
         _createStockService = createStockService;
         _getStockService = getStockService;
         _updateStockService = updateStockService;
+        _cancelStockService = cancelStockService;
     }
 
     /// <summary>
@@ -70,6 +73,18 @@ public class StocksController : ControllerBase
     public async Task<IActionResult> Put(Guid id, UpdateStockDto model)
     {
         await _updateStockService.UpdateStockAsync(id, model);
+        return NoContent();
+    }
+
+    /// <summary>
+    /// Cancel a Stock
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id}/cancel")]
+    public async Task<IActionResult> Cancel(Guid id)
+    {
+        await _cancelStockService.CancelStockAsync(id);
         return NoContent();
     }
 }
