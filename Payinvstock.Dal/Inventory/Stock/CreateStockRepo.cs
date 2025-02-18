@@ -34,7 +34,6 @@ public class CreateStockRepo : ICreateStockRepo
         END $$;
         """;
 
-        model.Status = Enums.Inventory.StockStatus.Saved;
         await connection.ExecuteAsync(query);
     }
 
@@ -47,7 +46,7 @@ public class CreateStockRepo : ICreateStockRepo
         var stockQuery = new StringBuilder();
         stockQuery.AppendLine(@"INSERT INTO ""Inventory"".""Stock"" ");
         stockQuery.AppendLine(@"    (""Date"", ""Status"", ""Note"", ""ProviderId"", ""StoreId"", ""ReasonId"", ""CreatedAt"", ""CreatedBy"") VALUES ");
-        stockQuery.AppendLine(@$"   (CURRENT_DATE, {(byte)model.Status}, '{Sanitize(model.Note)}', '{model.ProviderId}', '{model.StoreId}', '{model.ReasonId}', CURRENT_DATE, '{model.CreatedBy}') RETURNING ""Id"" INTO InsertedStockId;");
+        stockQuery.AppendLine(@$"   (CURRENT_DATE, {(byte)model.Status}, '{Sanitize(model.Note??"")}', '{model.ProviderId}', '{model.StoreId}', '{model.ReasonId}', CURRENT_DATE, '{model.CreatedBy}') RETURNING ""Id"" INTO InsertedStockId;");
         return stockQuery.ToString();
     }
 

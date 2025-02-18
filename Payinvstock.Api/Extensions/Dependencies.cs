@@ -95,7 +95,7 @@ public static class Dependencies
         //Stock
         services.AddScoped<ICreateStockRepo, CreateStockRepo>();
         services.AddScoped<IGetStockRepo, GetStockRepo>();
-
+        services.AddScoped<IUpdateStockRepo, UpdateStockRepo>();
 
         //StockDetail
         services.AddScoped<IGetStockDetailRepo, GetStockDetailRepo>();
@@ -154,6 +154,7 @@ public static class Dependencies
         //Stock
         services.AddScoped<ICreateStockService, CreateStockService>();
         services.AddScoped<IGetStockService, GetStockService>();
+        services.AddScoped<IUpdateStockService, UpdateStockService>();
 
         #endregion
 

@@ -8,7 +8,7 @@ public class StockProfileMapping : Profile
     public StockProfileMapping()
     {
         CreateMap<Entity.Inventory.Stock, CreateStockDto>().ReverseMap();
-        //CreateMap<Entity.Inventory.Stock, UpdateStockDto>().ReverseMap();
+        CreateMap<Entity.Inventory.Stock, UpdateStockDto>().ReverseMap();
         CreateMap<Entity.Inventory.Stock, GetStockDto>().ReverseMap();
         CreateMap<Entity.Inventory.Stock, GetSingleStockDto>().ReverseMap();
     }

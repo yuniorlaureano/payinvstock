@@ -3,7 +3,7 @@ using Payinvstock.Enums.Inventory;
 
 namespace Payinvstock.Dto.Inventory.Stock;
 
-public class CreateStockDto
+public class UpdateStockDto
 {
     public string? Note { get; set; }
     public StockStatus Status { get; set; }

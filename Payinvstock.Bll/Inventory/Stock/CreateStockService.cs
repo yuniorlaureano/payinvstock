@@ -30,7 +30,7 @@ public class CreateStockService : ICreateStockService
         }
 
         var stock = _mapper.Map<Entity.Inventory.Stock>(model);
-        var detail = _mapper.Map<List<Entity.Inventory.StockDetail>>(model.Details);
+        var detail = _mapper.Map<List<Entity.Inventory.StockDetail>>(model.Detail);
 
         stock.CreatedBy = _userContextAccessor.GetCurrentUserId();
         stock.CreatedAt = DateTime.UtcNow;

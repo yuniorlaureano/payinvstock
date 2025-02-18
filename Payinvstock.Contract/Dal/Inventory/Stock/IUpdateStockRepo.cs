@@ -2,5 +2,5 @@
 
 public interface IUpdateStockRepo
 {
-    Task UpdateStockAsync(Entity.Inventory.Stock model);
+    Task UpdateStockAsync(Entity.Inventory.Stock model, List<Entity.Inventory.StockDetail> detail);
 }
