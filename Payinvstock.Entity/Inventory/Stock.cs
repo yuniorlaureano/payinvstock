@@ -14,7 +14,7 @@ public class Stock
     /// When the transaction took place
     /// </summary>
     public DateTime Date { get; set; }
-    public StockStatus Status { get; set; }
+    public StockStatus Status { get; set; } = StockStatus.Saved;
     public string? Note { get; set; }
     public Guid? ProviderId { get; set; }
     public Guid StoreId { get; set; }

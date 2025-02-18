@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Inventory\Stock\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Payinvstock.Contract\Payinvstock.Contract.csproj" />
     <ProjectReference Include="..\Payinvstock.Dto\Payinvstock.Dto.csproj" />
     <ProjectReference Include="..\Payinvstock.Entity\Payinvstock.Entity.csproj" />
