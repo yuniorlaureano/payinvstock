@@ -175,6 +175,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(ProductMaterials.QuantityNeeded)).AsDouble().NotNullable()
                 .WithColumn(nameof(ProductMaterials.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
                 .WithColumn(nameof(ProductMaterials.MaterialId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
+                .WithColumn(nameof(ProductMaterials.UnitId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.General, primaryTableName: nameof(Unit), primaryColumnName: nameof(Unit.Id))
                 .WithColumn(nameof(ProductMaterials.CreatedAt)).AsDateTime().Nullable()
                 .WithColumn(nameof(ProductMaterials.UpdatedAt)).AsDateTime().Nullable()
                 .WithColumn(nameof(ProductMaterials.CreatedBy)).AsGuid().Nullable()

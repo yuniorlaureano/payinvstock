@@ -16,6 +16,7 @@ public class CreateStockRepo : ICreateStockRepo
 
     public async Task CreateStockAsync(Entity.Inventory.Stock model, List<Entity.Inventory.StockDetail> detail)
     {
+        //ToDo: when I finished ProductMaterial, come back here and add affect the inventory of the product, maybe add a stock id to the same table, to know which transaction affected productmaterial table
         using var connection = _dapperContext.CreateConnection();
         var query = 
         $"""

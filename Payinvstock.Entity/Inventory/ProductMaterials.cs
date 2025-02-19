@@ -28,6 +28,11 @@ public class ProductMaterials
     /// <see cref="QuantityType"/>"/>
     public double QuantityNeeded { get; set; }
 
+    /// <summary>
+    /// The unit of the product
+    /// e.g. gr, ml, kg
+    /// </summary>
+    public Guid UnitId { get; set; }
 
 
     //Who create or update and when it is done
