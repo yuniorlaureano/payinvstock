@@ -17,8 +17,8 @@ public class CreateProviderRepo : ICreateProviderRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""Inventory"".""Provider"" (""FirstName"", ""LastName"", ""Identification"", ""IdentificationType"", ""Phone"", ""Email"", ""Street"", ""BuildingNumber"", ""City"", ""State"", ""Country"", ""PostalCode"", ""FormattedAddress"", ""Latitude"", ""Longitude"", ""CreatedAt"", ""CreatedBy"") 
-                                              VALUES  (@FirstName, @LastName, @Identification, @IdentificationType, @Phone, @Email, @Street, @BuildingNumber, @City, @State, @Country, @PostalCode, @FormattedAddress, @Latitude, @Longitude, @CreatedAt, @CreatedBy)",
+            @$"INSERT INTO ""Inventory"".""Provider"" (""Id"", ""FirstName"", ""LastName"", ""Identification"", ""IdentificationType"", ""Phone"", ""Email"", ""Street"", ""BuildingNumber"", ""City"", ""State"", ""Country"", ""PostalCode"", ""FormattedAddress"", ""Latitude"", ""Longitude"", ""CreatedAt"", ""CreatedBy"") 
+                                              VALUES  ('{Guid.CreateVersion7()}', @FirstName, @LastName, @Identification, @IdentificationType, @Phone, @Email, @Street, @BuildingNumber, @City, @State, @Country, @PostalCode, @FormattedAddress, @Latitude, @Longitude, @CreatedAt, @CreatedBy)",
             model
         );
     }

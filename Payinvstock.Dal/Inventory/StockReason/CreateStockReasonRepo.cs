@@ -17,8 +17,8 @@ public class CreateStockReasonRepo : ICreateStockReasonRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""Inventory"".""StockReason"" (""Name"", ""Description"", ""InputOrOutput"", ""CreatedAt"", ""CreatedBy"") 
-                                        VALUES  (@Name, @Description, @InputOrOutput, @CreatedAt, @CreatedBy)",
+            @$"INSERT INTO ""Inventory"".""StockReason"" (""Id"",""Name"", ""Description"", ""InputOrOutput"", ""CreatedAt"", ""CreatedBy"") 
+                                        VALUES  ('{Guid.CreateVersion7()}', @Name, @Description, @InputOrOutput, @CreatedAt, @CreatedBy)",
             model
         );
     }

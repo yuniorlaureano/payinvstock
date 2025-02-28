@@ -46,8 +46,8 @@ public class CreateStockRepo : ICreateStockRepo
     {
         var stockQuery = new StringBuilder();
         stockQuery.AppendLine(@"INSERT INTO ""Inventory"".""Stock"" ");
-        stockQuery.AppendLine(@"    (""Date"", ""Status"", ""Note"", ""ProviderId"", ""StoreId"", ""ReasonId"", ""CreatedAt"", ""CreatedBy"") VALUES ");
-        stockQuery.AppendLine(@$"   (CURRENT_DATE, {(byte)model.Status}, '{Sanitize(model.Note??"")}', '{model.ProviderId}', '{model.StoreId}', '{model.ReasonId}', CURRENT_DATE, '{model.CreatedBy}') RETURNING ""Id"" INTO InsertedStockId;");
+        stockQuery.AppendLine(@"    (""Id"",""Date"", ""Status"", ""Note"", ""ProviderId"", ""StoreId"", ""ReasonId"", ""CreatedAt"", ""CreatedBy"") VALUES ");
+        stockQuery.AppendLine(@$"   ('{Guid.CreateVersion7()}',CURRENT_DATE, {(byte)model.Status}, '{Sanitize(model.Note??"")}', '{model.ProviderId}', '{model.StoreId}', '{model.ReasonId}', CURRENT_DATE, '{model.CreatedBy}') RETURNING ""Id"" INTO InsertedStockId;");
         return stockQuery.ToString();
     }
 
@@ -61,18 +61,18 @@ public class CreateStockRepo : ICreateStockRepo
         var numberOfDetail = detail.Count;
         var processedDetail = 0;
         var detailQuery = new StringBuilder();
-        detailQuery.AppendLine(@"INSERT INTO ""Inventory"".""StockDetail"" (""StockId"", ""ProductId"", ""Quantity"", ""PurchasePrice"") VALUES ");
+        detailQuery.AppendLine(@"INSERT INTO ""Inventory"".""StockDetail"" (""Id"", ""StockId"", ""ProductId"", ""Quantity"", ""PurchasePrice"") VALUES ");
 
         foreach (var item in detail)
         {
             processedDetail++;
             if (processedDetail == numberOfDetail)
             {
-                detailQuery.AppendLine($"(InsertedStockId, '{item.ProductId}', {item.Quantity}, {item.PurchasePrice});");
+                detailQuery.AppendLine($"('{Guid.CreateVersion7()}', InsertedStockId, '{item.ProductId}', {item.Quantity}, {item.PurchasePrice});");
             }
             else
             {
-                detailQuery.AppendLine($"(InsertedStockId, '{item.ProductId}', {item.Quantity}, {item.PurchasePrice}),");
+                detailQuery.AppendLine($"('{Guid.CreateVersion7()}', InsertedStockId, '{item.ProductId}', {item.Quantity}, {item.PurchasePrice}),");
             }
         }
 

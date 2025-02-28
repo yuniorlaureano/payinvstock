@@ -17,8 +17,8 @@ public class CreateUnitRepo : ICreateUnitRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""General"".""Unit"" (""Code"", ""Name"", ""Description"", ""CreatedAt"", ""CreatedBy"") 
-                                        VALUES  (@Code, @Name, @Description, @CreatedAt, @CreatedBy)",
+            @$"INSERT INTO ""General"".""Unit"" (""Id"", ""Code"", ""Name"", ""Description"", ""CreatedAt"", ""CreatedBy"") 
+                                        VALUES  ('{Guid.CreateVersion7()}', @Code, @Name, @Description, @CreatedAt, @CreatedBy)",
             model
         );
     }

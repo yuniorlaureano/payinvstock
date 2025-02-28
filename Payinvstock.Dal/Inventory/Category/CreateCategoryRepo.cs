@@ -17,8 +17,8 @@ public class CreateCategoryRepo : ICreateCategoryRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""Inventory"".""Category"" (""Name"", ""Description"", ""CreatedAt"", ""CreatedBy"") 
-                                        VALUES  (@Name, @Description, @CreatedAt, @CreatedBy)",
+            @$"INSERT INTO ""Inventory"".""Category"" (""Id"",""Name"", ""Description"", ""CreatedAt"", ""CreatedBy"") 
+                                        VALUES  ('{Guid.CreateVersion7()}', @Id, @Name, @Description, @CreatedAt, @CreatedBy)",
             model
         );
     }

@@ -17,8 +17,8 @@ public class CreateProductRepo : ICreateProductRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""Inventory"".""Product"" (""Code"", ""Name"", ""Description"", ""Photo"", ""Price"", ""ByUnitOrWeight"", ""UnitValue"", ""UnitId"", ""CategoryId"", ""Type"", ""CreatedAt"") 
-                                        VALUES  (@Code, @Name, @Description, @Photo, @Price, @ByUnitOrWeight, @UnitValue, @UnitId, @CategoryId, @Type, @CreatedAt)",
+            @$"INSERT INTO ""Inventory"".""Product"" (""Id"", ""Code"", ""Name"", ""Description"", ""Photo"", ""Price"", ""ByUnitOrWeight"", ""UnitValue"", ""UnitId"", ""CategoryId"", ""Type"", ""CreatedAt"") 
+                                        VALUES  ('{Guid.CreateVersion7()}', @Code, @Name, @Description, @Photo, @Price, @ByUnitOrWeight, @UnitValue, @UnitId, @CategoryId, @Type, @CreatedAt)",
             model
         );
     }

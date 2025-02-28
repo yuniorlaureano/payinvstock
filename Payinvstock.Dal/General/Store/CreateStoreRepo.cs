@@ -17,8 +17,8 @@ public class CreateStoreRepo : ICreateStoreRepo
     {
         using var connection = _dapperContext.CreateConnection();
         await connection.ExecuteAsync(
-            @$"INSERT INTO ""General"".""Store"" (""Code"", ""Name"", ""Photo"", ""Description"", ""Address"", ""Latitude"", ""Longitude"" ) 
-                                        VALUES  (@Code, @Name, @Photo, @Description, @Address, @Latitude, @Longitude)",
+            @$"INSERT INTO ""General"".""Store"" (""Id"", ""Code"", ""Name"", ""Photo"", ""Description"", ""Address"", ""Latitude"", ""Longitude"" ) 
+                                        VALUES  ('{Guid.CreateVersion7()}', @Code, @Name, @Photo, @Description, @Address, @Latitude, @Longitude)",
             model
         );
     }

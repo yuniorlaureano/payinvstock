@@ -47,15 +47,13 @@ namespace Payinvstock.Migrator.Migrations
         }
         public override void Up()
         {
-            Execute.Sql("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";");
-
             Create.Schema(Schemas.General);
             Create.Schema(Schemas.Inventory);
             Create.Schema(Schemas.Invoicing);
 
             //General
             Create.Table(nameof(Unit)).InSchema(Schemas.General)
-               .WithColumn(nameof(Unit.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(Unit.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(Unit.Name)).AsAnsiString(100).NotNullable()
                .WithColumn(nameof(Unit.Code)).AsAnsiString(50).NotNullable()
                .WithColumn(nameof(Unit.Description)).AsAnsiString(200)
@@ -66,7 +64,7 @@ namespace Payinvstock.Migrator.Migrations
                .WithColumn(nameof(Unit.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(Store)).InSchema(Schemas.General)
-                .WithColumn(nameof(Store.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Store.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Store.Code)).AsAnsiString(50).NotNullable()
                 .WithColumn(nameof(Store.Name)).AsAnsiString(200).NotNullable()
                 .WithColumn(nameof(Store.Photo)).AsAnsiString()
@@ -81,7 +79,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(Store.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(Checkout)).InSchema(Schemas.General)
-                .WithColumn(nameof(Checkout.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Checkout.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Checkout.Name)).AsAnsiString(200).NotNullable()
                 .WithColumn(nameof(Checkout.Description)).AsAnsiString(500).Nullable()
                 .WithColumn(nameof(Checkout.Latitude)).AsDouble().Nullable()
@@ -93,7 +91,7 @@ namespace Payinvstock.Migrator.Migrations
 
             ////Inventory
             Create.Table(nameof(Category)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(Category.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Category.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Category.Name)).AsAnsiString(100).NotNullable()
                 .WithColumn(nameof(Category.Description)).AsAnsiString(200)
                 .WithColumn(nameof(Category.IsDeleted)).AsBoolean().WithDefaultValue(false)
@@ -103,7 +101,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(Category.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(ProductLocation)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(ProductLocation.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(ProductLocation.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(ProductLocation.Name)).AsAnsiString(100).NotNullable()
                 .WithColumn(nameof(ProductLocation.Description)).AsAnsiString(200)
                 .WithColumn(nameof(ProductLocation.IsDeleted)).AsBoolean().WithDefaultValue(false)
@@ -113,7 +111,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(ProductLocation.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(StockReason)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(StockReason.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(StockReason.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(StockReason.Name)).AsAnsiString().NotNullable()
                 .WithColumn(nameof(StockReason.Description)).AsAnsiString().NotNullable()
                 .WithColumn(nameof(StockReason.InputOrOutput)).AsInt16().NotNullable()
@@ -124,7 +122,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(StockReason.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(Product)).InSchema(Schemas.Inventory)
-               .WithColumn(nameof(Product.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(Product.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(Product.Code)).AsAnsiString(100).NotNullable()
                .WithColumn(nameof(Product.Name)).AsAnsiString(200).NotNullable()
                .WithColumn(nameof(Product.Description)).AsAnsiString(500)
@@ -142,7 +140,7 @@ namespace Payinvstock.Migrator.Migrations
                .WithColumn(nameof(Product.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(Provider)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(Provider.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Provider.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Provider.FirstName)).AsAnsiString(200).NotNullable()
                 .WithColumn(nameof(Provider.LastName)).AsAnsiString(200).Nullable()
                 .WithColumn(nameof(Provider.Identification)).AsAnsiString(30)
@@ -165,13 +163,13 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(Provider.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(ProductInStore)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(ProductInStore.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(ProductInStore.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(ProductInStore.LocationId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(ProductLocation), primaryColumnName: nameof(ProductLocation.Id))
                 .WithColumn(nameof(ProductInStore.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
                 .WithColumn(nameof(ProductInStore.StoreId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.General, primaryTableName: nameof(Store), primaryColumnName: nameof(Store.Id));
 
             Create.Table(nameof(ProductMaterials)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(ProductMaterials.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(ProductMaterials.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(ProductMaterials.QuantityNeeded)).AsDouble().NotNullable()
                 .WithColumn(nameof(ProductMaterials.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
                 .WithColumn(nameof(ProductMaterials.MaterialId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
@@ -182,7 +180,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(ProductMaterials.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(StockCycle)).InSchema(Schemas.Inventory)
-                .WithColumn(nameof(StockCycle.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(StockCycle.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(StockCycle.Note)).AsAnsiString().Nullable()
                 .WithColumn(nameof(StockCycle.StartDate)).AsDateTime().NotNullable()
                 .WithColumn(nameof(StockCycle.EndDate)).AsDateTime().NotNullable()
@@ -194,7 +192,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(StockCycle.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(StockCycleDetail)).InSchema(Schemas.Inventory)
-               .WithColumn(nameof(StockCycleDetail.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(StockCycleDetail.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(StockCycleDetail.ProductPrice)).AsDecimal(18, 2).NotNullable()
                .WithColumn(nameof(StockCycleDetail.ProductName)).AsAnsiString().NotNullable()
                .WithColumn(nameof(StockCycleDetail.ProductType)).AsInt16().NotNullable()
@@ -206,7 +204,7 @@ namespace Payinvstock.Migrator.Migrations
                .WithColumn(nameof(StockCycleDetail.StockCycleId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(StockCycle), primaryColumnName: nameof(StockCycle.Id));
 
             Create.Table(nameof(Stock)).InSchema(Schemas.Inventory)
-               .WithColumn(nameof(Stock.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(Stock.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(Stock.Date)).AsDateTime().NotNullable()
                .WithColumn(nameof(Stock.Status)).AsInt16().NotNullable()
                .WithColumn(nameof(Stock.Note)).AsAnsiString().Nullable()
@@ -220,7 +218,7 @@ namespace Payinvstock.Migrator.Migrations
                .WithColumn(nameof(Stock.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(StockDetail)).InSchema(Schemas.Inventory)
-               .WithColumn(nameof(StockDetail.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(StockDetail.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(StockDetail.Quantity)).AsDouble().NotNullable()
                .WithColumn(nameof(StockDetail.PurchasePrice)).AsDecimal(18, 2).Nullable()
                .WithColumn(nameof(StockDetail.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
@@ -228,7 +226,7 @@ namespace Payinvstock.Migrator.Migrations
 
             //Invoicing
             Create.Table(nameof(Client)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(Client.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Client.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Client.FirstName)).AsAnsiString(200).NotNullable()
                 .WithColumn(nameof(Client.LastName)).AsAnsiString(200).Nullable()
                 .WithColumn(nameof(Client.Identification)).AsAnsiString(30)
@@ -251,7 +249,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(Client.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(ClientCredit)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(ClientCredit.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(ClientCredit.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(ClientCredit.Credit)).AsDecimal(18, 2).NotNullable()
                 .WithColumn(nameof(ClientCredit.Concept)).AsAnsiString(200).NotNullable()
                 .WithColumn(nameof(ClientCredit.ClientId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Client), primaryColumnName: nameof(Client.Id))
@@ -261,7 +259,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(ClientCredit.UpdatedBy)).AsGuid().Nullable();
 
             Create.Table(nameof(Invoice)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(Invoice.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Invoice.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Invoice.Code)).AsAnsiString(50).NotNullable()
                 .WithColumn(nameof(Invoice.Type)).AsInt16().NotNullable()
                 .WithColumn(nameof(Invoice.Status)).AsInt16().NotNullable()
@@ -278,7 +276,7 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(Invoice.UpdatedBy)).AsGuid().Nullable().Nullable();
 
             Create.Table(nameof(Adjustment)).InSchema(Schemas.Invoicing)
-               .WithColumn(nameof(Adjustment.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(Adjustment.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(Adjustment.Concept)).AsAnsiString(100).NotNullable()
                .WithColumn(nameof(Adjustment.Value)).AsDecimal(18, 2).NotNullable()
                .WithColumn(nameof(Adjustment.IsDiscount)).AsBoolean().NotNullable()
@@ -288,7 +286,7 @@ namespace Payinvstock.Migrator.Migrations
                .WithColumn(nameof(Adjustment.IsDeleted)).AsBoolean().WithDefaultValue(false);
 
             Create.Table(nameof(AccountsReceivable)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(AccountsReceivable.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(AccountsReceivable.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(AccountsReceivable.Payment)).AsDecimal(18, 2).NotNullable()
                 .WithColumn(nameof(AccountsReceivable.Paid)).AsBoolean().NotNullable()
                 .WithColumn(nameof(AccountsReceivable.IsDeleted)).AsBoolean().WithDefaultValue(false)
@@ -296,21 +294,21 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(AccountsReceivable.ClientId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Client), primaryColumnName: nameof(Client.Id));
 
             Create.Table(nameof(AccountsReceivableDetail)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(AccountsReceivableDetail.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(AccountsReceivableDetail.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(AccountsReceivableDetail.PendingPayment)).AsDecimal(18, 2).NotNullable()
                 .WithColumn(nameof(AccountsReceivableDetail.Payment)).AsDecimal(18, 2).NotNullable()
                 .WithColumn(nameof(AccountsReceivableDetail.IsDeleted)).AsBoolean().WithDefaultValue(false)
                 .WithColumn(nameof(AccountsReceivableDetail.AccountsReceivableId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(AccountsReceivable), primaryColumnName: nameof(AccountsReceivable.Id));
 
             Create.Table(nameof(InvoiceDetail)).InSchema(Schemas.Invoicing)
-               .WithColumn(nameof(InvoiceDetail.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(InvoiceDetail.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(InvoiceDetail.Price)).AsDecimal(18, 2).NotNullable()
                .WithColumn(nameof(InvoiceDetail.Quantity)).AsDouble().NotNullable()
                .WithColumn(nameof(InvoiceDetail.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
                .WithColumn(nameof(InvoiceDetail.InvoiceId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Invoice), primaryColumnName: nameof(Invoice.Id));
 
             Create.Table(nameof(InvoiceDetailProductAdjustment)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(InvoiceDetailProductAdjustment.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(InvoiceDetailProductAdjustment.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(InvoiceDetailProductAdjustment.Concept)).AsAnsiString(100).NotNullable()
                 .WithColumn(nameof(InvoiceDetailProductAdjustment.IsDiscount)).AsBoolean().NotNullable()
                 .WithColumn(nameof(InvoiceDetailProductAdjustment.Type)).AsAnsiString(50).NotNullable()
@@ -318,28 +316,28 @@ namespace Payinvstock.Migrator.Migrations
                 .WithColumn(nameof(InvoiceDetailProductAdjustment.InvoiceDetailId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(InvoiceDetail), primaryColumnName: nameof(InvoiceDetail.Id));
 
             Create.Table(nameof(Delivery)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(Delivery.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Delivery.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Delivery.VehicleDescription)).AsAnsiString(300).NotNullable()
                 .WithColumn(nameof(Delivery.IsDeleted)).AsBoolean().WithDefaultValue(false)
                 .WithColumn(nameof(Delivery.UserId)).AsGuid().NotNullable();
 
             Create.Table(nameof(InvoiceDelivery)).InSchema(Schemas.Invoicing)
-               .WithColumn(nameof(InvoiceDelivery.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+               .WithColumn(nameof(InvoiceDelivery.Id)).AsGuid().PrimaryKey().NotNullable()
                .WithColumn(nameof(InvoiceDelivery.IsDeleted)).AsBoolean().WithDefaultValue(false)
                .WithColumn(nameof(InvoiceDelivery.InvoiceId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Invoice), primaryColumnName: nameof(Invoice.Id))
                .WithColumn(nameof(InvoiceDelivery.DeliveryId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Delivery), primaryColumnName: nameof(Delivery.Id));
 
             Create.Table(nameof(Purchase)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(Purchase.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(Purchase.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(Purchase.IsDeleted)).AsBoolean().WithDefaultValue(false);
 
             Create.Table(nameof(PurchaseDetail)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(PurchaseDetail.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(PurchaseDetail.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(PurchaseDetail.IsDeleted)).AsBoolean().WithDefaultValue(false)
                 .WithColumn(nameof(PurchaseDetail.PurchaseId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Purchase), primaryColumnName: nameof(Purchase.Id));
 
             Create.Table(nameof(ProductAdjustment)).InSchema(Schemas.Invoicing)
-                .WithColumn(nameof(ProductAdjustment.Id)).AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
+                .WithColumn(nameof(ProductAdjustment.Id)).AsGuid().PrimaryKey().NotNullable()
                 .WithColumn(nameof(ProductAdjustment.ProductId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Inventory, primaryTableName: nameof(Product), primaryColumnName: nameof(Product.Id))
                 .WithColumn(nameof(ProductAdjustment.AdjustmentId)).AsGuid().NotNullable().ForeignKey(null, primaryTableSchema: Schemas.Invoicing, primaryTableName: nameof(Adjustment), primaryColumnName: nameof(Adjustment.Id))
                 .WithColumn(nameof(ProductAdjustment.IsDeleted)).AsBoolean().WithDefaultValue(false)
